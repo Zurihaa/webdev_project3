@@ -35,7 +35,7 @@ body {
   #navbar ul li {
   float: left;
   display: block;
-  width: 33.33%;
+  width: 25%;
 }
 
 #navbar ul li a {
@@ -136,7 +136,7 @@ th{
 video {
   max-width: 100%;
   height: auto;
-  position: relative;
+  position: static;
   float: none;
   z-index: 1;
 }
