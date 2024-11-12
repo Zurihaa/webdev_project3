@@ -24,9 +24,47 @@
     <div id="map"></div>
   </div>
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGCg_cQoxhLvF6dAZsBRnT5pxFkLg2eBU&callback=initMap" async defer></script>
+  <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFwLWHYU1AutSvguYpv2eWUYZOdqb6WkA&callback=initMap" defer></script>
 
-  
+  <script>
+    let map;
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: 41.85003, lng: -87.65005 },
+        zoom: 15,
+      });
+
+      const marker = new google.maps.Marker({
+        position: { lat: 41.85003, lng: -87.65005 },
+        map: map,
+        title: "Chicago",
+      });
+
+      marker.addListener("click", () => {
+        infoWindow.open(map, marker);
+      });
+
+      const centerControlDiv = document.createElement("div");
+      const centerControl = createCenterControl(centerControlDiv, map, marker);
+      map.controls[google.maps.ControlPosition.TOP_RIGHT].push(centerControlDiv);
+    }
+
+    function createCenterControl(controlDiv, map, marker) {
+      const controlUI = document.createElement("div");
+      controlUI.classList.add("custom-control");
+      controlUI.title = "Click to center the map on the marker";
+      controlUI.innerText = "Center Map on Marker";
+      controlDiv.appendChild(controlUI);
+
+      controlUI.addEventListener("click", () => {
+        map.setCenter(marker.getPosition());
+        map.setZoom(12);
+      });
+
+      return controlUI;
+    }
+  </script>
 
 </body>
 </html>
