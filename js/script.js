@@ -1,16 +1,24 @@
-const images = ["city1.jpg", "city2.jpg", "city3.jpg"];
-let currentIndex = 0;
+const myImage = document.querySelector(".Myimage");
 
-function showSlide(index) {
-  document.getElementById("slide").src = images[index];
+if (myImage == null) {
+  console.log("Nope")
 }
 
-function nextSlide() {
-  currentIndex = (currentIndex + 1) % images.length;
-  showSlide(currentIndex);
+var imageArray = ["image/city1.jpg", "image/city2.jpg", "image/city3.jpg"];
+var imageIndex = 1;
+
+function changeImageNext() {
+  myImage.setAttribute("src", imageArray[imageIndex]);
+  imageIndex++;
+  if (imageIndex >= imageArray.length){
+    imageIndex = 0;
+  }
 }
 
-function prevSlide() {
-  currentIndex = (currentIndex - 1 + images.length) % images.length;
-  showSlide(currentIndex);
+function changeImagePrev() {
+  imageIndex--;
+  if (imageIndex < 0){
+    imageIndex = imageArray.length - 1;
+  }
+  myImage.setAttribute("src", imageArray[imageIndex]);
 }
