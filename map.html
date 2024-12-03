@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/script.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
     <header>
@@ -23,34 +24,37 @@
 
     <h3>Google Map</h3>
     
-    <div id="map"></div>
+    <div id="map" style="height: 400px; width: 100%;"></div>
     
     <script>
-      let map;
-
       function initMap() {
-        map = new google.maps.Map(document.getElementById("map"), {
+        const map = new google.maps.Map(document.getElementById("map"), {
           center: { lat: 41.85003, lng: -87.65005 },
-          zoom: 20,
+          zoom: 12,
         });
 
-      var marker = new google.maps.Marker({
-        position: { lat: 41.85003, lng: -87.65005 },
-        map: map,
-      });
+        // Create marker
+        const marker = new google.maps.Marker({
+          position: { lat: 41.85003, lng: -87.65005 },
+          map: map,
+          title: 'Chicago'
+        });
 
-      var infoWindow = new google.maps.InfoWindow({
-        content: '<h1>Chicago</h1>'
-      });
+        const infoWindow = new google.maps.InfoWindow({
+          content: '<h2>Chicago</h2><p>Welcome to the Windy City!</p>'
+        });
 
-      marker.addListener('click', function(){
-        infoWindow.open(map, marker);
-      });
-
+        marker.addListener('click', () => {
+          infoWindow.open(map, marker);
+        });
       }
     </script>
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCIFTjfeuJXZPb0absvpei77qPR0kYij5w&callback=initMap"></script>
+    <script 
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBPuauOVqTl8knjGfYkpQFVp-ixI5Rnn7U&callback=initMap" 
+      async 
+      defer>
+    </script>
 
     <div class="image">
       <img class="Myimage" src="image/city1.jpg" alt="City">
@@ -60,6 +64,5 @@
       <button onclick="changeImagePrev()">Prev</button>
       <button onclick="changeImageNext()">Next</button>
     </div>
-
   </body>
 </html>
